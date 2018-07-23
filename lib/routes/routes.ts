@@ -1,15 +1,16 @@
-import { Request, Response } from "express";
-import { ContactController } from "../controllers/controller";
 
+import { DefaultController } from '../controllers/controller';
 export class Routes {
     
     // default routes file
     
-    public contactController: ContactController = new ContactController();
+    public defaultController: DefaultController = new DefaultController();
     
     public routes = (app): void => {
         app.route('/')
-            .get(this.contactController.defaultRoute);
+            .get(this.defaultController.defaultRoute);
+
+        app.use(this.defaultController.incorrectRoutesHandler);
         
     }
 }

@@ -1,11 +1,8 @@
-import * as mongoose from 'mongoose';
-import { ContactSchema } from "../models/crmModel";
 import { Response, Request } from "express";
+import { ERROR_TYPES, ERRORS_MESSAGE, STATUS } from '../helpers/errorHelper';
+import { ErrorResponse } from '../helpers/responseHelper';
 
-// default schema set up
-const Contact = mongoose.model('contact', ContactSchema);
-
-export class ContactController {
+export class DefaultController {
     
     public defaultRoute = (req: Request, res: Response) => {
         res.json(
@@ -14,15 +11,8 @@ export class ContactController {
             }
         )
     };
-    
-    private makeResponseContact = (res: Response, err, contact) => {
-        
-        //default handler for response after actions with schema (contact for ex);
-        
-        if (err) {
-            // error handler
-        }
-        
-        res.json(contact);
+
+    public incorrectRoutesHandler = (req: Request, res: Response) => {
+        res.status(STATUS.notFound).json(new ErrorResponse(ERRORS_MESSAGE.noMethod, ERROR_TYPES.custom));
     }
 }

@@ -7,12 +7,12 @@
     "target": "es6",
     "outDir": "./dist",
     "baseUrl": "./lib",
-    "paths": {
-      "@config/*" : ["config/*"],
-      "@controllers/*": ["controllers/*"],
-      "@models/*": ["models/*"],
-      "@routes/*": ["routes/*"]
-    }
+//    "paths": {
+//      "@config/*" : ["config/*"],
+//      "@controllers/*": ["controllers/*"],
+//      "@models/*": ["models/*"],
+//      "@routes/*": ["routes/*"]
+//    }
   },
   "include": [
     "lib/**/*.ts"

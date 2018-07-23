@@ -1,0 +1,8 @@
+{
+  "name": "Back-end of todo app doc",
+  "version": "1.0.0",
+  "description": "API for back-end of todo app",
+  "template": {
+    "forceLanguage": "en"
+  }
+}
