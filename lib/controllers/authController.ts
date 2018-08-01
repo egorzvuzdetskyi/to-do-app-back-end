@@ -3,8 +3,16 @@ import { User } from '../models/userModel';
 import { authHelper } from '../helpers/authHelper';
 import { ErrorResponse, SuccessResponse } from '../helpers/responseHelper';
 import { ERROR_TYPES, ERRORS_MESSAGE, STATUS } from '../helpers/errorHelper';
+import { TokenControllerClass } from './tokenController';
+import { TokenInterface } from '../interfaces/TokenInterface';
 
 export class AuthControllerClass {
+
+    private _tokenControllerClass: TokenControllerClass = new TokenControllerClass ();
+
+    constructor() {
+
+    }
 
     public login = (req: Request, res: Response) => {
         const {
@@ -34,10 +42,13 @@ export class AuthControllerClass {
                     return;
                 }
 
-                const token: string = authHelper.encode (user);
+                const jwt_token: string = authHelper.encode (user);
 
-                res.status (STATUS.OK).json (new SuccessResponse ({ token: token }));
+                return this._tokenControllerClass.saveToken (jwt_token);
 
+            })
+            .then ((token: TokenInterface) => {
+                res.status (STATUS.OK).json (new SuccessResponse ({ token: token.token_key }));
             })
             .catch (err => {
                 console.log (err);

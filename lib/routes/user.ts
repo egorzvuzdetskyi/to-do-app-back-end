@@ -39,6 +39,36 @@ export class UserRoutes {
 
         app.post('/user', userController.save);
 
+        /**
+         * @api {get} /user Get user
+         * @apiName Get user
+         * @apiGroup User
+         * @apiDescription Route for user info
+         *
+         *
+         * @apiParam (Body) {String} token Token for user
+         *
+         * @apiSuccessExample {json} Success-Response:
+         *     HTTP/1.1 200 OK
+         *     {
+         *          "status": true,
+         *           "data": {
+         *                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...EzmfeA"
+         *           }
+         *      }
+         *
+         *     @apiErrorExample {json} Error-Response:
+         *
+         *     HTTP/1.1 500 Internal server error
+         *     {
+         *       "status" : false,
+         *       "type" : "MODEL",
+         *       "errorObject" : "Mongoose default error object"
+         *     }
+         */
+
+        app.get('/user', userController.get)
+
 
     }
     
